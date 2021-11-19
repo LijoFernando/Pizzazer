@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+<style type="text/css">
+#header {
+	background-color: #66b3ff;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+}
+
+#middle {
+	background-color: #e6fff2;
+	height: 400px;
+	padding: 30px;
+	display: list-item;
+	justify-content: center;
+}
+
+#title-header {
+	margin: 100px;
+	text-align: center;
+	text-transform: uppercase;
+	color: white;
+	font-size: 20px;
+}
+
+#api-feild-Container, #show-jason-conataior {
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+}
+
+.api-feild-size {
+	padding: 8px;
+	font-family: sans-serif;
+	font-size: medium;
+}
+
+#show-jason-feild {
+	height: 300px;
+	width: 500px;
+	border: 2px solid #66b3ff;
+	resize: none;
+}
+
+#api-feild {
+	width: 300px;
+}
+</style>
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).on('click', '#getButton', function() {
+		$('#show-jason-feild').val("");
+		var path = $('#api-feild').val();
+		$.ajax({
+			url : path,
+			success : function(data) {
+				console.log(data);
+				if (data != "" && data != null) {
+					const myJSON = JSON.stringify(data);
+					$('#show-jason-feild').val(myJSON);
+				} else {
+					$('#show-jason-feild').val("Record Not Found");
+				}
+			}
+		});
+	});
+</script>
+<body>
+
+	<div id="header">
+		<div id="title-header">
+			<h2>Search Pizza Api</h2>
+		</div>
+	</div>
+	<div id="middle">
+		<div id="middle-feilds">
+			<div id="api-feild-Container" class="api-feild-size">
+				<label style="font-size: 20px;" class="api-feild-size">Api
+					path//</label> <input class="api-feild-size" type="text" id="api-feild">
+				<input class="api-feild-size" type="button" id="getButton"
+					value="Submit">
+			</div>
+			<div id="show-jason-conataior">
+				<textarea id="show-jason-feild" placeholder="Your Jason Data"></textarea>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
