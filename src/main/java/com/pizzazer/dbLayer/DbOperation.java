@@ -55,7 +55,7 @@ public class DbOperation {
 
 			int pizzaId = rs.getInt(1);
 			String pizzaName = rs.getString(2);
-			float pizzaprice = rs.getFloat(3);
+			float pizzaPrice = rs.getFloat(3);
 			String incredientName = rs.getString(4);
 
 			if (pizzaMap.containsKey(pizzaId)) {
